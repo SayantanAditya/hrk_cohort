@@ -1,25 +1,32 @@
-  import React, { Children, useState } from 'react';
-  
-  function App() {
-    return (<>
-     <CardWrapper>
-      hi there
-     </CardWrapper>
-     
-    </>
-     
-    )
+import React from 'react'
+import { useEffect, useState } from "react"
+
+function App() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => 
+  {
+    setInterval(()=>{
+      fetch('https://sum-server.100xdevs.com/todos')
+      .then(async(res) => {
+        const json = await res.json();
+        setTodos(json.todos);
+      }) 
+    },1000)
+  },[])
+  return (
+    <>
+      {todos.map(({title, description}) => <Todo title={title} description={description} />)}
     
-  }
+    </>
+  )
+}
 
- 
-  function CardWrapper({children}){
-    return(
-      <div style={{ border: '2px solid black' , padding: '10px', margin: '5px' }}>
-      {children}
-    </div>
-    )
-  }
-  
+function Todo({title,description}) {
+  return <div>
+    <h2>{title}</h2>
+    <h4>{description}</h4>
+  </div>
+}
 
-  export default App
+export default App
