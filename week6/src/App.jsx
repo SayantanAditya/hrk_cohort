@@ -1,47 +1,32 @@
   import React, { useState } from 'react';
-  let count=4;
+  
   function App() {
-    const [todos,setTodos] = useState([{
-      id:1,
-      title:"go to gym",
-      description:"go to gym today"
-    },{
-      id:2,
-      title:"go to eat",
-      description:"go to eat today"
-    },
-    {
-      id:3,
-      title:"go to sleep",
-      description:"go to sleep today"
-    }
-  ])
-
-  function addTodo() {
-    setTodos([...todos,{
-      id: count++,
-      title:Math.random(),
-      description:Math.random()
-    }])
-  }
-
-    return (
-    <>
-      <button onClick={addTodo}>Add a todo</button>
-      {todos.map(function(todo){
-        return <Todo key={todo.id} title={todo.title} description={todo.description}></Todo>
-      })}
+    return (<>
+     <CardWrapper Inner={TextComponent} />
+     <CardWrapper Inner={TextComponent1} />
     </>
-
+     
     )
+    
   }
 
-  function Todo({title,description}){
+  function TextComponent() {
+    return <div>
+      hi there
+    </div>
+  }
+
+  function TextComponent1() {
+    return <div>
+      hi there wsup
+    </div>
+  }
+
+  function CardWrapper({Inner}){
     return(
-      <div>
-        <h2>{title}</h2>
-        <h4>{description}</h4>
-      </div>
+      <div style={{ border: '2px solid black' }}>
+      <Inner />
+    </div>
     )
   }
   
