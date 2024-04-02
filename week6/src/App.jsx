@@ -1,5 +1,5 @@
   import React, { useState } from 'react';
-
+  let count=4;
   function App() {
     const [todos,setTodos] = useState([{
       id:1,
@@ -19,7 +19,7 @@
 
   function addTodo() {
     setTodos([...todos,{
-      id:4,
+      id: count++,
       title:Math.random(),
       description:Math.random()
     }])
@@ -29,7 +29,7 @@
     <>
       <button onClick={addTodo}>Add a todo</button>
       {todos.map(function(todo){
-        return <Todo title={todo.title} description={todo.description}></Todo>
+        return <Todo key={todo.id} title={todo.title} description={todo.description}></Todo>
       })}
     </>
 
