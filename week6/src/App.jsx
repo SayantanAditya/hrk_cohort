@@ -1,35 +1,49 @@
-import React, { useState } from 'react';
+  import React, { useState } from 'react';
 
-function App() {
-  const [name, setName] = useState("my name is sayantan");
+  function App() {
+    const [todos,setTodos] = useState([{
+      id:1,
+      title:"go to gym",
+      description:"go to gym today"
+    },{
+      id:2,
+      title:"go to eat",
+      description:"go to eat today"
+    },
+    {
+      id:3,
+      title:"go to sleep",
+      description:"go to sleep today"
+    }
+  ])
 
-  function updateName(){
-    setName("my name is " + Math.random());
+  function addTodo() {
+    setTodos([...todos,{
+      id:4,
+      title:Math.random(),
+      description:Math.random()
+    }])
   }
-  return (
-  <>
+
+    return (
+    <>
+      <button onClick={addTodo}>Add a todo</button>
+      {todos.map(function(todo){
+        return <Todo title={todo.title} description={todo.description}></Todo>
+      })}
+    </>
+
+    )
+  }
+
+  function Todo({title,description}){
+    return(
+      <div>
+        <h2>{title}</h2>
+        <h4>{description}</h4>
+      </div>
+    )
+  }
   
-  <button onClick={updateName}>Click me to change the title</button>
-  <Header title={name}></Header>
-  <Header title="my name is sayantan2"></Header>
-  <Header title="my name is sayantan2"></Header>
-  <Header title="my name is sayantan2"></Header>
-  <Header title="my name is sayantan2"></Header>
-  <Header title="my name is sayantan2"></Header>
-  
-  </>
 
-  )
-}
-
-
-const Header = React.memo(function Header({title}) {
-  return(
-    <div>
-    {title}
-    </div>
-  )
-}
-)
-
-export default App
+  export default App
