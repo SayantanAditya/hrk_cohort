@@ -12,18 +12,24 @@ function App() {
   <button onClick={updateName}>Click me to change the title</button>
   <Header title={name}></Header>
   <Header title="my name is sayantan2"></Header>
+  <Header title="my name is sayantan2"></Header>
+  <Header title="my name is sayantan2"></Header>
+  <Header title="my name is sayantan2"></Header>
+  <Header title="my name is sayantan2"></Header>
   
   </>
 
   )
 }
 
-function Header({title}) {
+
+const Header = React.memo(function Header({title}) {
   return(
     <div>
     {title}
     </div>
   )
 }
+)
 
 export default App
