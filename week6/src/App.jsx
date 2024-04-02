@@ -1,31 +1,22 @@
-  import React, { useState } from 'react';
+  import React, { Children, useState } from 'react';
   
   function App() {
     return (<>
-     <CardWrapper Inner={TextComponent} />
-     <CardWrapper Inner={TextComponent1} />
+     <CardWrapper>
+      hi there
+     </CardWrapper>
+     
     </>
      
     )
     
   }
 
-  function TextComponent() {
-    return <div>
-      hi there
-    </div>
-  }
-
-  function TextComponent1() {
-    return <div>
-      hi there wsup
-    </div>
-  }
-
-  function CardWrapper({Inner}){
+ 
+  function CardWrapper({children}){
     return(
-      <div style={{ border: '2px solid black' }}>
-      <Inner />
+      <div style={{ border: '2px solid black' , padding: '10px', margin: '5px' }}>
+      {children}
     </div>
     )
   }
