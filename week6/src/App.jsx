@@ -7,7 +7,7 @@ function App() {
   useEffect(() => 
   {
     setInterval(()=>{
-      fetch('https://sum-server.100xdevs.com/todos')
+      fetch('https://sum-server.100xdevs.com/todo')
       .then(async(res) => {
         const json = await res.json();
         setTodos(json.todos);
