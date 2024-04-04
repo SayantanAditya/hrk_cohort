@@ -1,37 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import axios from "axios"
+import React, { useState } from 'react'
 
 function App() {
-  
-    const [id,setId] = useState(1);
- 
+  const [inputvalue, setInputvalue] = useState(1);
+  const [counter, setCounter] = useState(0);
+  let count = 0;
+  for( let i =1;i<=inputvalue;i++){count=count+i;}
   return (
     <div>
-      <button onClick={()=>setId(1)}>1</button>
-      <button onClick={()=>setId(2)}>2</button>
-      <button onClick={()=>setId(3)}>3</button>
-      <button onClick={()=>setId(4)}>4</button>
-      <Todo id={id} />
+      <input onChange={(e)=>{setInputvalue(e.target.value)}} placeholder='Find sum from 1 to n'></input>
+      <br></br>
+      Sum from 1 to {inputvalue} is {count}
+      <br />
+      <button onClick={()=>{setCounter(counter+1)}}>{counter}</button>
     </div>
   )
 }
 
-function Todo({id}){
-  const [todo,setTodo] = useState([])
-  useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todo?id=" + id)
-      .then( function(res) {
-        setTodo (res.data.todo);
-      })
-  }, [id])
-
-  return <div>
-  <h1>
-    {todo.title}
-  </h1>
-  <h4>
-    {todo.description}
-  </h4>
-</div>
-}
-export default App
+export default App;
