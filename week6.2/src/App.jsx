@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      axios.get('https://sum-server.100xdevs.com/todo')
+        .then((res) => {
+          if (Array.isArray(res.data.todos)) {
+            setTodos(res.data.todos);
+          } else {
+            console.error('Todos is not an array:', res.data.todos);
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching todos:', error);
+        });
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId); // Cleanup interval on component unmount
+    };
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {todos.map(({ title, description }, index) => (
+        <Todo key={index} title={title} description={description} />
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+function Todo({ title, description }) {
+  return (
+    <div>
+      <h2>{title}</h2>
+      <h4>{description}</h4>
+    </div>
+  );
+}
+
+export default App;
