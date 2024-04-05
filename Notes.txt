@@ -1,0 +1,26 @@
+useMemo:
+Used to memoize (cache) the result of a function call.
+The function is executed only when its dependencies change.
+Useful for optimizing expensive computations that don't need to be re-computed on every render.
+
+useCallback:
+Used to memoize a function itself.
+The function instance is preserved across renders as long as its dependencies haven't changed.
+Particularly useful when passing callback functions as props to child components, to prevent unnecessary re-renders.
+
+useEffect:
+Used to perform side effects in functional components.
+Can be used to fetch data, subscribe to events, or manually change the DOM.
+Runs after the component has been rendered, and can optionally clean up the effect on component unmount or subsequent re-renders.
+
+React.memo:
+A higher-order component (HOC) that memoizes the entire functional component.
+It compares the previous and current props of the component to determine if it should re-render.
+Useful for optimizing the rendering performance of components that are expensive to render and don't need to be re-rendered on every parent re-render.
+
+To summarize the key differences:
+
+useMemo memoizes the result of a function, useCallback memoizes the function itself, and React.memo memoizes the entire component.
+useCallback is specifically useful when passing functions as props to child components, to prevent unnecessary re-renders.
+useEffect is used for handling side effects, such as fetching data or subscribing to events, and can also clean up those effects.
+React.memo is a higher-order component that memoizes the entire component, and can be used to optimize the rendering performance of expensive components.
