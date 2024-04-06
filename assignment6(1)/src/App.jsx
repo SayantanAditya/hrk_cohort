@@ -1,23 +1,16 @@
-import { useRef } from "react";
-import { useEffect } from "react";
+import './App.css'
+import { Assignment1 } from './components/assn1.1'
+import { Assignment2 } from './components/assn1.2'
+import { Assignment3 } from './components/assn1.3'
 
-// Create a component with a text input field and a button. When the component mounts or the button is clicked, automatically focus the text input field using useRef.
+function App() {
+  return (
+    <>
+      {/*<Assignment1 />*/}
+      <Assignment2 /> 
+      {/* <Assignment3 /> */}\
+    </>
+  )
+}
 
-export function App() {
-    const inputRef = useRef();
-
-    useEffect(() => {
-        inputRef.current.focus() 
-    }, [inputRef]);
-
-    const handleButtonClick = () => {
-        inputRef.current.focus()
-    };
-
-    return (
-        <div>
-            <input ref={inputRef} type="text" placeholder="Enter text here" />
-            <button onClick={handleButtonClick}>Focus Input</button>
-        </div>
-    );
-};
+export default App
