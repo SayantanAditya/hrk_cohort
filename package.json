@@ -1,0 +1,12 @@
+{
+  "name": "hrk_cohort",
+  "version": "1.0.0",
+  "description": "This repo will be dedicated to the assignments and examples learned in Harkirat's 2.0 WebDevelopment Course.<br>\r This will have both, the live class work and the assignments.<br>\r To access the live class work just check the old commit. <br>\r To access the assignment that will be the latest commit so will directly see that.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
